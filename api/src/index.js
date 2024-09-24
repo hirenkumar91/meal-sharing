@@ -4,6 +4,8 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import knex from "./database_client.js";
 import nestedRouter from "./routers/nested.js";
+import path from path;
+
 
 const app = express();
 app.use(cors());
