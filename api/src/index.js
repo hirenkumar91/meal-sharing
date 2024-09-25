@@ -5,6 +5,8 @@ import bodyParser from "body-parser";
 // Import all route//
 import nestedRouter from "./routers/nested.js";
 import allMealroute from "./routers/all-meal.js";
+import futureMealroute from "./routers/future-meal.js";
+import pastMealroute from "./routers/past-meal.js";
 
 
 const app = express();
@@ -20,6 +22,8 @@ const apiRouter = express.Router();
 // use route
 apiRouter.use("/nested", nestedRouter);
 apiRouter.use("/all-meal", allMealroute);
+apiRouter.use("/future-Meal", futureMealroute);
+apiRouter.use("/past-Meal", pastMealroute);
 app.use("/api",apiRouter);
 
 const PORT = process.env.PORT || 3000;
