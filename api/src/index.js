@@ -10,6 +10,7 @@ import pastMealroute from "./routers/past-meal.js";
 import firstMealroute from "./routers/first-meal.js";
 import lastMealroute from "./routers/last-meal.js";
 import mealRouter from "./routers/meals.js";
+import reservRouter from "./routers/reservations.js";
 
 
 
@@ -32,6 +33,7 @@ apiRouter.use("/past-Meal", pastMealroute);
 apiRouter.use("/first-meal",firstMealroute);
 apiRouter.use("/last-meal",lastMealroute);
 apiRouter.use("/meal",mealRouter);
+apiRouter.use("/reservation",reservRouter);
 
 // Error handling
 app.use((err, req, res, next) => {

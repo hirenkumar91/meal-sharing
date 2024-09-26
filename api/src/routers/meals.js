@@ -76,7 +76,8 @@ mealRouter.delete("/:id", async (req, res, next) => {
           .del();
 
       if (result) {
-          res.status(200).json({ message: "Meal deleted successfully" });
+          res.status(200).json({ message: "Meal deleted successfully" ,
+          });
       } else {
           res.status(404).json({ message: "Meal not found" });
       }
