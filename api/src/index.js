@@ -1,7 +1,6 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import knex from "knex";
 
 // Import all route//
 import nestedRouter from "./routers/nested.js";

@@ -30,11 +30,7 @@ mealRouter.post("/", async (req, res, next) => {
 mealRouter.get("/:id", async (req,res,next) => {
     try{
         const id = req.params.id;
-        console.log(id);
-
         const meal = await knex("meal").select("*").where("id",id).first();
-        console.log(meal);
-
         if (!meal) {
             res.status(404).json({ message: "Meal not found" });
           } else {
@@ -57,7 +53,10 @@ mealRouter.put("/:id", async (req, res, next) => {
           .update(updatedData);
 
       if (result) {
-          res.status(200).json({ message: "Meal updated successfully" });
+        const updatedMeal = await knex("meal").where({ id }).first();
+          res.status(200).json({ message: "Meal updated successfully",
+            meal: updatedMeal
+           });
       } else {
           res.status(404).json({ message: "Meal not found" });
       }
