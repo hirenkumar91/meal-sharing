@@ -1,31 +1,48 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import bodyParser from "body-parser";
-import knex from "./database_client.js";
+
+// Import all route//
 import nestedRouter from "./routers/nested.js";
+import allMealroute from "./routers/all-meal.js";
+import futureMealroute from "./routers/future-meal.js";
+import pastMealroute from "./routers/past-meal.js";
+import firstMealroute from "./routers/first-meal.js";
+import lastMealroute from "./routers/last-meal.js";
+import mealRouter from "./routers/meals.js";
+import reservRouter from "./routers/reservations.js";
+
+
 
 const app = express();
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
-const apiRouter = express.Router();
-
-// You can delete this route once you add your own routes
-apiRouter.get("/", async (req, res) => {
-  const SHOW_TABLES_QUERY =
-    process.env.DB_CLIENT === "pg"
-      ? "SELECT * FROM pg_catalog.pg_tables;"
-      : "SHOW TABLES;";
-  const tables = await knex.raw(SHOW_TABLES_QUERY);
-  res.json({ tables });
+app.get("/", (req, res) => {
+  res.send("Welcome to the Meal Sharing API!");
 });
 
-// This nested router example can also be replaced with your own sub-router
+const apiRouter = express.Router();
+app.use("/api",apiRouter);
+
+// use route
 apiRouter.use("/nested", nestedRouter);
+apiRouter.use("/all-meal", allMealroute);
+apiRouter.use("/future-Meal", futureMealroute);
+apiRouter.use("/past-Meal", pastMealroute);
+apiRouter.use("/first-meal",firstMealroute);
+apiRouter.use("/last-meal",lastMealroute);
+apiRouter.use("/meal",mealRouter);
+apiRouter.use("/reservation",reservRouter);
 
-app.use("/api", apiRouter);
+// Error handling
+app.use((err, req, res, next) => {
+  console.error("Error occurred:", err.message); // Log the error message
+  res.status(err.status || 500).json({ message: "An error occurred", error: err.message });
+});
 
-app.listen(process.env.PORT, () => {
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
   console.log(`API listening on port ${process.env.PORT}`);
 });
