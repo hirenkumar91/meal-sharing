@@ -1,2 +1,5 @@
 .DS_STORE
 .gitpod.yml
+.vscode
+.node_modules
+**/node_modules/
