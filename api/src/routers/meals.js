@@ -5,7 +5,7 @@ const mealRouter = express.Router();
 // get all meal
 mealRouter.get("/", async (req, res, next) => {
     try{
-        const all_meals = await knex("meal").select("*");
+        const all_meals = await knex("meal");
     res.json(all_meals);
     } catch (err) {
         next(err);

@@ -25,7 +25,7 @@ reservRouter.post("/", async (req, res, next) => {
 reservRouter.get("/:id", async (req,res,next) => {
     try{
         const id = req.params.id;
-        const reservation = await knex("Reservation").select("*").where("id",id).first();
+        const reservation = await knex("Reservation").select("*").where({id}).first();
         if (!reservation) {
             res.status(404).json({ message: "reservation not found" });
           } else {
