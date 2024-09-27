@@ -10,8 +10,6 @@ import pastMealroute from "./routers/past-meal.js";
 import firstMealroute from "./routers/first-meal.js";
 import lastMealroute from "./routers/last-meal.js";
 
-
-
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
@@ -27,12 +25,10 @@ apiRouter.use("/nested", nestedRouter);
 apiRouter.use("/all-meal", allMealroute);
 apiRouter.use("/future-Meal", futureMealroute);
 apiRouter.use("/past-Meal", pastMealroute);
-apiRouter.use("/first-meal",firstMealroute);
-apiRouter.use("/last-meal",lastMealroute);
-app.use("/api",apiRouter);
-
+apiRouter.use("/first-meal", firstMealroute);
+apiRouter.use("/last-meal", lastMealroute);
+app.use("/api", apiRouter);
 const PORT = process.env.PORT || 3000;
-
 app.listen(PORT, () => {
   console.log(`API listening on port ${process.env.PORT}`);
 });
