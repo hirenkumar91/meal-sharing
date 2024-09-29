@@ -1,2 +1,5 @@
 .DS_STORE
 .gitpod.yml
+**/node_modules/
+.env
+npm-debug.log
