@@ -17,7 +17,7 @@ Both packages are as small as possible but feel free to add more tools as you se
 This template assumes that there is a database already set up with tables and data.
 
 You can start a MySQL instance using Docker with the below command:  
-`docker run --name mysql -e MYSQL_ROOT_PASSWORD=mysql-root-password -e MYSQL_DATABASE=my-database -d -p 3306:3306 mysql:latest`
+`docker run --name firstDB -e MYSQL_ROOT_PASSWORD=Hiren_trivedi -e MYSQL_DATABASE=meal -d -p 3306:3306 mysql:latest`
 
 Then connect to this instance using any database management tool you prefer, such as MySQL Workbench, to set up your tables and add data.
 ![Testing your database](./images/db_test.png)
