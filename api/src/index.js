@@ -12,8 +12,6 @@ import lastMealroute from "./routers/last-meal.js";
 import mealRouter from "./routers/meals.js";
 import reservRouter from "./routers/reservations.js";
 
-
-
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -40,9 +38,7 @@ app.use((err, req, res, next) => {
   console.error("Error occurred:", err.message); // Log the error message
   res.status(err.status || 500).json({ message: "An error occurred", error: err.message });
 });
-
 const PORT = process.env.PORT || 3000;
-
 app.listen(PORT, () => {
   console.log(`API listening on port ${process.env.PORT}`);
 });
