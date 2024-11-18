@@ -1,5 +1,8 @@
 .DS_STORE
 .gitpod.yml
+.vscode
+.node_modules
+**/node_modules/
 **/node_modules/
 .env
 npm-debug.log
