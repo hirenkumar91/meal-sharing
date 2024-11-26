@@ -21,22 +21,24 @@ app.get("/", (req, res) => {
 });
 
 const apiRouter = express.Router();
-app.use("/api",apiRouter);
+app.use("/api", apiRouter);
 
 // use route
 apiRouter.use("/nested", nestedRouter);
 apiRouter.use("/all-meal", allMealroute);
 apiRouter.use("/future-Meal", futureMealroute);
 apiRouter.use("/past-Meal", pastMealroute);
-apiRouter.use("/first-meal",firstMealroute);
-apiRouter.use("/last-meal",lastMealroute);
-apiRouter.use("/meal",mealRouter);
-apiRouter.use("/reservation",reservRouter);
+apiRouter.use("/first-meal", firstMealroute);
+apiRouter.use("/last-meal", lastMealroute);
+apiRouter.use("/meal", mealRouter);
+apiRouter.use("/reservation", reservRouter);
 
 // Error handling
 app.use((err, req, res, next) => {
   console.error("Error occurred:", err.message); // Log the error message
-  res.status(err.status || 500).json({ message: "An error occurred", error: err.message });
+  res
+    .status(err.status || 500)
+    .json({ message: "An error occurred", error: err.message });
 });
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

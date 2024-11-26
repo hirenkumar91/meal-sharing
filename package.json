@@ -1,5 +1,36 @@
 {
+  "name": "api",
+  "private": true,
+  "version": "1.0.0",
+  "main": "api/src/index.js",
+  "type": "module",
+  "engines": {
+    "node": "^20.12.1",
+    "npm": "^10.5.0"
+  },
+  "scripts": {
+    "dev": "nodemon api/src/index.js",
+    "start": "node api/src/index.js",
+    "format": "npx prettier . --write",
+    "check": "npx eslint . --fix"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "curl": "^0.1.4",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "knex": "^3.1.0",
+    "module": "^1.2.5",
+    "mysql2": "^3.10.0",
+    "pg": "^8.13.1",
+    "tailwindcss": "^3.4.15"
+  },
   "devDependencies": {
-    "nodemon": "^3.1.7"
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0",
+    "nodemon": "^3.1.0",
+    "prettier": "3.3.3"
   }
 }
