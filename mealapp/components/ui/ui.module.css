@@ -47,11 +47,29 @@
   background-color: #c1ecc1;
 }
 
-.footer {
+.footer {display: flex;
+  flex-direction: row;
   position: sticky;
-  margin-top: auto;
   background-color: #161a15;
   color: #c1ecc1;
   width: 100%;
-  height: 200px;
+  height: fit-content;
+  padding: 20px;
+}
+
+.copyright {
+  display: flex;
+  flex-direction: row;
+}
+
+.socialMedia {
+  margin-left: 75%;
+  display: flex;
+  flex-direction: row;
+  color: #7ad17a;
+}
+
+.socialMedia > a{
+  font-size: 30px;
+  padding-left: 40px;
 }
