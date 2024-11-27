@@ -8,8 +8,9 @@ export const NavBar = () => {
     <div className={styles.navbar}>
       <div className={styles.navItem}>
         <Link href="/">
-          <img src="../logo.png" alt="" />
-          <h1 className={styles.logo}>MealManiac</h1>
+          <div className={styles.logo}>
+            <h1>MealManiac</h1>
+          </div>
         </Link>
       </div>
       <Navlinkitem />

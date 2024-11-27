@@ -25,7 +25,29 @@ body {
 
 .mainContent {
   padding-top: 80px;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
+  height: auto;
+  width: fit-content;
+  overflow: visible;
+}
+.btn-primary {
+  margin-top: 20px;
+  background-color: #93cf91;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #ffffff;
+  color: #93cf91;
+}
+
+.headingText {
+  color: green;
+}
+
+.primaryText {
+  color: #161a15;
+}
+
+.secondaryText {
+  color: #ededed;
 }

@@ -7,8 +7,9 @@ const Footer = () => {
   return (
     <div className={styles.footer}>
       <div className={styles.copyright}>
+        <h1>Copyright</h1>
         <MdCopyright size={24} />
-        <h1>MealManiac 2024</h1>
+        <h1>2024- All right reserved by MealManiac</h1>
       </div>
       <div className={styles.socialMedia}>
         <a

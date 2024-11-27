@@ -1,7 +1,9 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import "./meal.css";
-import daisyui from "daisyui";
+import Link from "next/link";
+import { setSelectedMealID } from "./carddetails/mealstoreage";
 
 const Meal = () => {
   const [meals, setMeals] = useState([]);
@@ -23,16 +25,37 @@ const Meal = () => {
       });
   }, []);
 
+  if (!meals && !error) {
+    return <div>Loading...</div>;
+  }
+
+  // Handle error state
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <div>
-      <h1>Meal Page</h1>
+      <div className="pagenav">
+        <div className="form-control searchBar">
+          <input
+            type="text"
+            placeholder="Search"
+            className="input input-bordered w-24 md:w-auto"
+          />
+        </div>
+      </div>
+
       {error && <p>Error: {error}</p>}
       <div className="cardDisplay">
         {meals.length === 0 ? (
           <p>No meals available</p>
         ) : (
           meals.map((meal) => (
-            <div className="card bg-base-100 w-96 shadow-xl" key={meal.id}>
+            <div
+              className="card bg-base-100 w-96 shadow-xl flex justify-between"
+              key={meal.id}
+            >
               <figure className="px-10 pt-10">
                 <img src="" alt={meal.title} className="rounded-xl" />
               </figure>
@@ -40,8 +63,13 @@ const Meal = () => {
                 <h2 className="card-title">{meal.title}</h2>
                 <p>{meal.description}</p>
                 <div className="card-actions">
-                  <button className="btn btn-primary">Reservation</button>
-                  <button className="btn btn-primary">Review</button>
+                  <Link
+                    href="/meal/carddetails"
+                    className="btn btn-primary"
+                    onClick={() => setSelectedMealID(meal.id)}
+                  >
+                    More
+                  </Link>
                 </div>
               </div>
             </div>

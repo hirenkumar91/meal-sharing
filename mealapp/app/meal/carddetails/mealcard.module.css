@@ -1,0 +1,20 @@
+.mealSelection {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(https://images.squarespace-cdn.com/content/v1/53b839afe4b07ea978436183/1daa9086-0f1d-4d65-86b5-4a15a36d08d4/traditional-food-around-the-world-Travlinmad.jpg?format=1500w);
+  background-size:cover;
+  background-position: center;
+}
+
+
+.formCard {
+  padding: 20px;
+}
+
+.formcardTitle {
+  color: antiquewhite;
+  align-items: center;
+  padding-left: 40px;
+}
