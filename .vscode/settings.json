@@ -1,18 +1,19 @@
 {
-    "sqltools.connections": [
-        {
-            "mysqlOptions": {
-                "authProtocol": "default",
-                "enableSsl": "Disabled"
-            },
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 3306,
-            "driver": "MySQL",
-            "name": "firstDB",
-            "database": "meal",
-            "username": "root",
-            "password": "Hiren_trivedi"
-        }
-    ]
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "firstDB",
+      "database": "meal",
+      "username": "root",
+      "password": "Hiren_trivedi"
+    }
+  ],
+  "cSpell.words": ["setselectedmeal"]
 }
