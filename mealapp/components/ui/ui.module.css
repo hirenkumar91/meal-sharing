@@ -47,7 +47,8 @@
   background-color: #c1ecc1;
 }
 
-.footer {display: flex;
+.footer {
+  display: flex;
   flex-direction: row;
   position: sticky;
   background-color: #161a15;
@@ -69,7 +70,7 @@
   color: #7ad17a;
 }
 
-.socialMedia > a{
+.socialMedia > a {
   font-size: 30px;
   padding-left: 40px;
 }

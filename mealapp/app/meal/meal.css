@@ -1,0 +1,11 @@
+.cardDisplay {
+  display: flex;
+  flex-direction: row;
+  margin: 1%;
+  overflow: scroll;
+}
+
+.cardDisplay > div {
+  padding: 20px;
+  margin: 10px;
+}
