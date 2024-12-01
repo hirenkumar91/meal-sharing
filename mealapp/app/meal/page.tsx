@@ -5,9 +5,18 @@ import "./meal.css";
 import Link from "next/link";
 import { setSelectedMealID } from "./carddetails/mealstoreage";
 
+interface Meal {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  location: string;
+  max_reservations: number;
+}
+
 const Meal = () => {
-  const [meals, setMeals] = useState([]);
-  const [error, setError] = useState(null);
+  const [meals, setMeals] = useState<Meal[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("http://localhost:3001/api/meal")
@@ -25,11 +34,10 @@ const Meal = () => {
       });
   }, []);
 
-  if (!meals && !error) {
+  if (meals.length === 0 && !error) {
     return <div>Loading...</div>;
   }
 
-  // Handle error state
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -46,7 +54,6 @@ const Meal = () => {
         </div>
       </div>
 
-      {error && <p>Error: {error}</p>}
       <div className="cardDisplay">
         {meals.length === 0 ? (
           <p>No meals available</p>
