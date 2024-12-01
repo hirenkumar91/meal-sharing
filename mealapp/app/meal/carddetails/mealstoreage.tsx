@@ -4,6 +4,6 @@ export const setSelectedMealID = (mealID) => {
 };
 
 // Utility function to retrieve the selected meal ID
-export const getSelectedMealID = () => {
+export const getSelectedMealID = (mealId: number) => {
   return localStorage.getItem("selectedMealID");
 };
