@@ -9,7 +9,7 @@ const Navlinkitem = () => {
   const [activeLink, setActiveLink] = useState("/");
 
   // Function to handle link click
-  const handleLinkClick = (link) => {
+  const handleLinkClick = (link: string) => {
     setActiveLink(link);
   };
 
