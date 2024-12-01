@@ -4,9 +4,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { getSelectedMealID } from "./mealstoreage";
 import styles from "./mealcard.module.css";
-import { FaCaretRight } from "react-icons/fa";
 
-const cardDetails = () => {
+const CardDetails = () => {
   const [selectedmeal, setselectedmeal] = useState(null);
   const [error, setError] = useState(null);
 
@@ -42,10 +41,16 @@ const cardDetails = () => {
     <div className={styles.mealSelection}>
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold headingText">{selectedmeal.title}</h1>
+          <h1 className="text-5xl font-bold headingText">
+            {selectedmeal.title}
+          </h1>
           <h1 className="text-3xl primaryText">{selectedmeal.description}</h1>
-          <h1 className="text-2xl font-bold primaryText">{selectedmeal.price} DKK</h1>
-          <h1 className="text-2xl font-bold primaryText">{selectedmeal.location}</h1>
+          <h1 className="text-2xl font-bold primaryText">
+            {selectedmeal.price} DKK
+          </h1>
+          <h1 className="text-2xl font-bold primaryText">
+            {selectedmeal.location}
+          </h1>
           <h1 className="text-2xl font-bold primaryText">
             Max reservation available {selectedmeal.max_reservations} people
           </h1>
@@ -112,4 +117,4 @@ const cardDetails = () => {
   );
 };
 
-export default cardDetails;
+export default CardDetails;

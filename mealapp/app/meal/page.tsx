@@ -57,7 +57,7 @@ const Meal = () => {
               key={meal.id}
             >
               <figure className="px-10 pt-10">
-                <img src="" alt={meal.title} className="rounded-xl" />
+                <img src="#" alt={meal.title} className="rounded-xl" />
               </figure>
               <div className="card-body items-center text-center">
                 <h2 className="card-title">{meal.title}</h2>
