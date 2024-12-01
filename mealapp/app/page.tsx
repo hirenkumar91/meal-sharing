@@ -1,6 +1,6 @@
 import React from "react";
 
-const SectionHome = () => {
+const Home = () => {
   return (
     <main>
       <div>
@@ -20,10 +20,6 @@ const SectionHome = () => {
       </div>
     </main>
   );
-};
-
-export const Home = () => {
-  return <SectionHome />;
 };
 
 export default Home;
