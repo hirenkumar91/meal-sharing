@@ -40,7 +40,7 @@ app.use((err, req, res, next) => {
     .status(err.status || 500)
     .json({ message: "An error occurred", error: err.message });
 });
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`API listening on port ${process.env.PORT}`);
 });
