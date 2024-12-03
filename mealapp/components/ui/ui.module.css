@@ -54,7 +54,7 @@
   position: sticky;
   background-color: #161a15;
   color: #c1ecc1;
-  width: 100%;
+  width: 100vw;
   height: fit-content;
   padding: 20px;
 }

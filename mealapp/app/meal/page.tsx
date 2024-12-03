@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import "./meal.css";
 import Link from "next/link";
 import { setSelectedMealID } from "./carddetails/mealstoreage";
+import { getApiUrl } from "../utils/api";
+import Image from "next/image";
 
 interface Meal {
   id: string;
@@ -19,7 +21,18 @@ const Meal = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/meal")
+    const url = getApiUrl("api/meal");  // Use the getApiUrl to get the correct URL
+    console.log("Generated API URL:", url);  // Check the generated URL
+
+    // If the URL is empty or invalid, log an error
+    if (!url) {
+      console.error("The generated URL is empty or invalid.");
+      setError("Invalid API URL");
+      return;
+    }
+
+    // Make the fetch request with the generated URL
+    fetch(url)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch meals");
@@ -64,7 +77,7 @@ const Meal = () => {
               key={meal.id}
             >
               <figure className="px-10 pt-10">
-                <img src="#" alt={meal.title} className="rounded-xl" />
+                <Image src="#" alt={meal.title} className="rounded-xl" />
               </figure>
               <div className="card-body items-center text-center">
                 <h2 className="card-title">{meal.title}</h2>

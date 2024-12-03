@@ -25,9 +25,10 @@ body {
 
 .mainContent {
   padding-top: 80px;
-  height: auto;
-  width: fit-content;
+  height: 100vh;
+  width: 100vw;
   overflow: visible;
+  background-color: #f5f2f2;
 }
 .btn-primary {
   margin-top: 20px;
