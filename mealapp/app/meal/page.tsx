@@ -5,7 +5,6 @@ import "./meal.css";
 import Link from "next/link";
 import { setSelectedMealID } from "./carddetails/mealstoreage";
 import { getApiUrl } from "../utils/api";
-import Image from "next/image";
 
 interface Meal {
   id: string;
