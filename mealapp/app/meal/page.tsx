@@ -21,8 +21,8 @@ const Meal = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const url = getApiUrl("api/meal");  // Use the getApiUrl to get the correct URL
-    console.log("Generated API URL:", url);  // Check the generated URL
+    const url = getApiUrl("api/meal"); // Use the getApiUrl to get the correct URL
+    console.log("Generated API URL:", url); // Check the generated URL
 
     // If the URL is empty or invalid, log an error
     if (!url) {
@@ -76,9 +76,7 @@ const Meal = () => {
               className="card bg-base-100 w-96 shadow-xl flex justify-between"
               key={meal.id}
             >
-              <figure className="px-10 pt-10">
-                <Image src="#" alt={meal.title} className="rounded-xl" />
-              </figure>
+              <figure className="px-10 pt-10"></figure>
               <div className="card-body items-center text-center">
                 <h2 className="card-title">{meal.title}</h2>
                 <p>{meal.description}</p>
