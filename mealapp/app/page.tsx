@@ -1,24 +1,43 @@
 import React from "react";
+import styles from "../app/main.module.css";
 
 const Home = () => {
   return (
-    <main>
-      <div>
-        <div className="hero bg-base-200 min-h-screen">
-          <div className="hero-content text-center">
-            <div className="max-w-md">
-              <h1 className="text-5xl font-bold">Hello there</h1>
-              <p className="py-6 headingText">
-                Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                assumenda excepturi exercitationem quasi. In deleniti eaque aut
-                repudiandae et a id nisi.
-              </p>
-              <button className="btn btn-primary">Get Started</button>
-            </div>
+    <div>
+      <div className={`${styles.MainBanner} hero  min-h-screen`}>
+        <div className={styles.content}>
+          <h1 className="text-5xl font-bold">Join the Meal Maniac Movement</h1>
+          <p className="py-6">
+            Let’s face it – food is life, and we’re living it to the fullest.
+            Ready to get your next meal fix? Join the Meal Maniac crew today,
+            and never look at food the same way again.
+          </p>
+          <p>Eat. Enjoy. Repeat.</p>
+        </div>
+      </div>
+      <div className={styles.TopThreeBanner}>
+        <div className="carousel carousel-end rounded-box">
+          <div className="carousel-item">
+            <img
+              src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp"
+              alt="Drink"
+            />
+          </div>
+          <div className="carousel-item">
+            <img
+              src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp"
+              alt="Drink"
+            />
+          </div>
+          <div className="carousel-item">
+            <img
+              src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp"
+              alt="Drink"
+            />
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 

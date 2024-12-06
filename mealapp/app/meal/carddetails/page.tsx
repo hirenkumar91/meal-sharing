@@ -11,16 +11,20 @@ interface Meal {
   price: number;
   location: string;
   max_reservations: number;
+  averagestars: number;
+  availablereservations: number; // Include available reservations
 }
 
 const CardDetails = () => {
-  const [selectedmeal, setSelectedMeal] = useState<Meal | null>(null);
+  const [selectedMeal, setSelectedMeal] = useState<Meal | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const mealID = getSelectedMealID();
     if (!mealID) {
       setError("No meal ID found.");
+      setLoading(false);
       return;
     }
 
@@ -33,42 +37,50 @@ const CardDetails = () => {
       })
       .then((data) => {
         setSelectedMeal(data);
+        setError(null); // Clear any previous errors
       })
       .catch((error) => {
         setError(error.message);
-      });
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   // Handle loading state
-  if (!selectedmeal && !error) {
-    return <div>Loading...</div>;
+  if (loading) {
+    return <div>Loading meal details...</div>; // You can replace this with a spinner
   }
 
   // Handle error state
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="error-message">Error: {error}</div>;
   }
 
   return (
     <div className={styles.mealSelection}>
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
-          {selectedmeal ? (
+          {selectedMeal ? (
             <>
               <h1 className="text-5xl font-bold headingText">
-                {selectedmeal.title}
+                {selectedMeal.averagestars}
+              </h1>
+              <h1 className="text-5xl font-bold headingText">
+                {selectedMeal.title}
               </h1>
               <h1 className="text-3xl primaryText">
-                {selectedmeal.description}
+                {selectedMeal.description}
               </h1>
               <h1 className="text-2xl font-bold primaryText">
-                {selectedmeal.price} DKK
+                {selectedMeal.price} DKK
               </h1>
               <h1 className="text-2xl font-bold primaryText">
-                {selectedmeal.location}
+                {selectedMeal.location}
               </h1>
               <h1 className="text-2xl font-bold primaryText">
-                Max reservation available {selectedmeal.max_reservations} people
+                Max reservations: {selectedMeal.max_reservations}
+              </h1>
+              <h1 className="text-2xl font-bold primaryText">
+                Available reservations: {selectedMeal.availablereservations}
               </h1>
             </>
           ) : (
@@ -76,13 +88,20 @@ const CardDetails = () => {
           )}
         </div>
 
+        {/* Reservation Form */}
         <div
           className={`card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl ${styles.formCard}`}
         >
           <div>
             <h1 className={styles.formcardTitle}>Grab Your Spot Now!</h1>
           </div>
-          <form className="card-body">
+          <form
+            className="card-body"
+            onSubmit={(e) => {
+              e.preventDefault();
+              alert("Reservation submitted!");
+            }}
+          >
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -107,12 +126,14 @@ const CardDetails = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Number of people</span>
+                <span className="label-text">Number of People</span>
               </label>
               <input
                 type="number"
                 placeholder="For how many"
                 className="input input-bordered"
+                min={1}
+                max={selectedMeal?.availablereservations || 1} // Restrict to available reservations
                 required
               />
             </div>
@@ -128,7 +149,14 @@ const CardDetails = () => {
               />
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Submit</button>
+              <button
+                className="btn btn-primary"
+                disabled={
+                  !selectedMeal || selectedMeal.availablereservations === 0
+                }
+              >
+                Submit
+              </button>
             </div>
           </form>
         </div>

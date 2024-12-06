@@ -1,0 +1,34 @@
+.MainBanner {
+  position: relative;
+  padding: 15vh;
+  margin-bottom: 1vh;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url(https://images.everydayhealth.com/images/diet-nutrition/what-is-a-vegan-diet-benefits-food-list-beginners-guide-alt-1440x810.jpg?sfvrsn=1d260c85_5);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.MainBanner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  z-index: -1;
+}
+
+.MainBanner .content {
+  position: relative;
+  z-index: 1;
+  color: rgb(20, 91, 12);
+  background: rgba(207, 239, 215, 0.5);
+  padding: 5vh;
+}
+
+

@@ -2,53 +2,35 @@
 
 import React, { useEffect, useState } from "react";
 import "./meal.css";
-import Link from "next/link";
 import { setSelectedMealID } from "./carddetails/mealstoreage";
-import { getApiUrl } from "../utils/api";
-
-interface Meal {
-  id: string;
-  title: string;
-  description: string;
-  price: number;
-  location: string;
-  max_reservations: number;
-}
+import { fetchMeals, Meal } from "../utils/fetchData";
+import Card from "@/components/mealcard";
 
 const Meal = () => {
   const [meals, setMeals] = useState<Meal[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   useEffect(() => {
-    const url = getApiUrl("api/meal"); // Use the getApiUrl to get the correct URL
-    console.log("Generated API URL:", url); // Check the generated URL
-
-    // If the URL is empty or invalid, log an error
-    if (!url) {
-      console.error("The generated URL is empty or invalid.");
-      setError("Invalid API URL");
-      return;
-    }
-
-    // Make the fetch request with the generated URL
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch meals");
-        }
-        return response.json();
-      })
-      .then((data) => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchMeals();
         setMeals(data);
-      })
-      .catch((error) => {
+      } catch (error: any) {
         setError(error.message);
-      });
+      }
+    };
+
+    fetchData();
   }, []);
 
-  if (meals.length === 0 && !error) {
-    return <div>Loading...</div>;
-  }
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredMeals = meals.filter((meal) =>
+    meal.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -61,35 +43,23 @@ const Meal = () => {
           <input
             type="text"
             placeholder="Search"
+            value={searchQuery}
+            onChange={handleSearchChange}
             className="input input-bordered w-24 md:w-auto"
           />
         </div>
       </div>
 
       <div className="cardDisplay">
-        {meals.length === 0 ? (
+        {filteredMeals.length === 0 ? (
           <p>No meals available</p>
         ) : (
-          meals.map((meal) => (
-            <div
-              className="card bg-base-100 w-96 shadow-xl flex justify-between"
+          filteredMeals.map((meal) => (
+            <Card
               key={meal.id}
-            >
-              <figure className="px-10 pt-10"></figure>
-              <div className="card-body items-center text-center">
-                <h2 className="card-title">{meal.title}</h2>
-                <p>{meal.description}</p>
-                <div className="card-actions">
-                  <Link
-                    href="/meal/carddetails"
-                    className="btn btn-primary"
-                    onClick={() => setSelectedMealID(meal.id)}
-                  >
-                    More
-                  </Link>
-                </div>
-              </div>
-            </div>
+              meal={meal}
+              setSelectedMealID={setSelectedMealID}
+            />
           ))
         )}
       </div>

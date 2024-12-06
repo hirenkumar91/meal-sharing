@@ -51,7 +51,6 @@
 .footer {
   display: flex;
   flex-direction: row;
-  position: sticky;
   background-color: #161a15;
   color: #c1ecc1;
   width: 100vw;
