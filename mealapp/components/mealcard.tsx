@@ -1,7 +1,13 @@
-import React from "react";
 import Link from "next/link";
+import { Meal } from "../app/utils/fetchData"; // Import the type Meal
 
-const Card = ({ meal, setSelectedMealID }) => {
+// Define the props for the Card component
+interface CardProps {
+  meal: Meal; // Type the `meal` prop as `Meal`
+  setSelectedMealID: (id: string) => void; // Define `setSelectedMealID` as a function that takes a string (meal ID)
+}
+
+const Card = ({ meal, setSelectedMealID }: CardProps) => {
   return (
     <div
       className="card bg-base-100 w-96 shadow-xl flex justify-between"

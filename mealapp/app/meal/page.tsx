@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from "react";
 import "./meal.css";
 import { setSelectedMealID } from "./carddetails/mealstoreage";
-import { fetchMeals, Meal } from "../utils/fetchData";
+import { fetchMeals } from "../utils/fetchData";
+import type { Meal } from "../utils/fetchData";
 import Card from "@/components/mealcard";
 
 const Meal = () => {
