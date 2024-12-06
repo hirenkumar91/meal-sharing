@@ -5,7 +5,26 @@ const mealRouter = express.Router();
 // get all meal
 mealRouter.get("/", async (req, res, next) => {
   try {
-    const all_meals = await knex("meal");
+    // Query to get meals and calculate the average review score
+    const all_meals = await knex("meal")
+      .leftJoin("review", "meal.id", "review.meal_id") // Join with the review table
+      .leftJoin("reservation", "meal.id", "reservation.meal_id") // Join with the reservation table
+      .select(
+        "meal.id",
+        "meal.title",
+        "meal.description",
+        knex.raw("meal.price::numeric as price"),
+        "meal.location",
+        "meal.max_reservations",
+        knex.raw(
+          "ROUND(COALESCE(AVG(review.stars), 0), 1)::numeric as averageStars"
+        ), // Ensure averageStars is a number
+        knex.raw(
+          "GREATEST(meal.max_reservations - COALESCE(SUM(reservation.number_of_guests), 0), 0)::numeric as availableReservations"
+        ) // Ensure availableReservations is an integer
+      )
+      .groupBy("meal.id"); // Group by meal ID to calculate the average
+
     res.json(all_meals);
   } catch (err) {
     next(err);
