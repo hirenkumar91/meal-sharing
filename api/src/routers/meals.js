@@ -46,10 +46,31 @@ mealRouter.post("/", async (req, res, next) => {
 
 // Get meal by id
 
+// Get meal by id
 mealRouter.get("/:id", async (req, res, next) => {
   try {
     const id = req.params.id;
-    const meal = await knex("meal").select("*").where("id", id).first();
+    const meal = await knex("meal")
+      .leftJoin("review", "meal.id", "review.meal_id") // Join with the review table
+      .leftJoin("reservation", "meal.id", "reservation.meal_id") // Join with the reservation table
+      .select(
+        "meal.id",
+        "meal.title",
+        "meal.description",
+        knex.raw("meal.price::numeric as price"),
+        "meal.location",
+        "meal.max_reservations",
+        knex.raw(
+          "ROUND(COALESCE(AVG(review.stars), 0), 1)::numeric as averageStars"
+        ), // Ensure averageStars is a number
+        knex.raw(
+          "GREATEST(meal.max_reservations - COALESCE(SUM(reservation.number_of_guests), 0), 0)::numeric as availableReservations"
+        ) // Ensure availableReservations is an integer
+      )
+      .where("meal.id", id) // Filter by the meal ID
+      .groupBy("meal.id") // Group by meal ID
+      .first(); // Ensure only one result is returned
+
     if (!meal) {
       res.status(404).json({ message: "Meal not found" });
     } else {
